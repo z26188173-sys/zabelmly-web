@@ -11,9 +11,24 @@ function cargarDatos() {
         .then(res => res.json())
         .then(data => {
             const lista = document.getElementById('db-lista');
-            lista.innerHTML = data.registros.map(r => `<li>[${r.fecha}] ${r.texto}</li>`).join('');
+            // Ahora renderizamos cada elemento con un botón que lleva su ID químico
+            lista.innerHTML = data.registros.map(r => `
+                <li>
+                    <span>[${r.fecha.split(' ')[1] || r.fecha}] ${r.texto}</span>
+                    <button class="btn-del" onclick="eliminarDato(${r.id})">❌</button>
+                </li>
+            `).join('');
         });
 }
+
+function eliminarDato(id) {
+    fetch(`/api/datos/${id}`, { method: 'DELETE' })
+        .then(res => res.json())
+        .then(() => {
+            cargarDatos(); // Refrescar los impulsos en pantalla
+        });
+}
+
 
 // Guardar nuevo dato
 function guardarDato() {
