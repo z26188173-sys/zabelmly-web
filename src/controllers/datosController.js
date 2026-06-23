@@ -39,3 +39,19 @@ exports.eliminarUno = (req, res) => {
         res.json({ message: `Registro ${id} eliminado de la memoria` });
     });
 };
+
+// Lógica para obtener UN SOLO registro por ID químico (GET dinámico)
+exports.obtenerUno = (req, res) => {
+    const { id } = req.params; // <-- Capturamos la variable de la URL
+
+    db.get("SELECT * FROM registros WHERE id = ?", [id], (err, row) => {
+        if (err) {
+            return res.status(500).json({ error: err.message });
+        }
+        if (!row) {
+            return res.status(404).json({ error: `La neurona con ID ${id} no existe` });
+        }
+        res.json({ registro: row });
+    });
+};
+
