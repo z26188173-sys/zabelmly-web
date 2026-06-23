@@ -1,16 +1,17 @@
 const express = require('express');
 const path = require('path');
+const apiRoutes = require('./src/routes/api'); // <-- Nueva línea
+
 const app = express();
 const PORT = 3000;
 
-// 1. MIDDLEWARES (Configuraciones de seguridad y lectura de datos)
-app.use(express.json()); // Para que tu servidor entienda JSON
-app.use(express.urlencoded({ extended: true })); // Para entender formularios HTML
-
-// 2. ARCHIVOS ESTÁTICOS (Tu Frontend)
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-// 3. RUTAS (Próximamente las separaremos aquí)
+// API ENDPOINTS
+app.use('/api', apiRoutes); // <-- Conectamos las rutas de la base de datos
+
 app.get('/api/status', (req, res) => {
     res.json({ 
         status: "online", 
@@ -19,7 +20,7 @@ app.get('/api/status', (req, res) => {
     });
 });
 
-// 4. ENCENDER SERVIDOR
 app.listen(PORT, () => {
     console.log(`🧠 Servidor estructurado corriendo en http://localhost:${PORT}`);
 });
+

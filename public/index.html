@@ -9,11 +9,16 @@
 <body>
     <div class="container">
         <h1>Anatomía de zabelmly-web</h1>
-        <p>Estructura base montada con éxito en Ubuntu + Termux.</p>
-        <div id="status-card" class="card">Cargando estado del servidor...</div>
+        <div id="status-card" class="card">Conectando con el núcleo...</div>
+        
+        <div class="card">
+            <h3>Escribir en la Base de Datos</h3>
+            <input type="text" id="db-input" placeholder="Escribe un pensamiento para la base de datos...">
+            <button onclick="guardarDato()">Guardar</button>
+            
+            <h4>Registros en tiempo real:</h4>
+            <ul id="db-lista" style="text-align: left; list-style-type: square;"></ul>
+        </div>
     </div>
     <script src="/js/main.js"></script>
 </body>
-</html>
-
-
