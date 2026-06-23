@@ -1,0 +1,20 @@
+body {
+    background-color: #121212;
+    color: #ffffff;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+.container { text-align: center; }
+h1 { color: #00ffcc; }
+.card {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #00ffcc;
+    margin-top: 20px;
+}
+
